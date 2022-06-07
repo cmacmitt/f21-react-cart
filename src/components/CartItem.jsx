@@ -1,4 +1,4 @@
-const CartItem = ({ item, remove }) => {
+const CartItem = ({ item, remove, increment }) => {
   const { id, name, price, quantity } = item;
   return (
     <li className="cart-item">
@@ -8,7 +8,7 @@ const CartItem = ({ item, remove }) => {
           <i></i>
         </button>
         {quantity}
-        <button className="fa fa-plus">
+        <button onClick={() => increment(id)} className="fa fa-plus">
           <i></i>
         </button>
       </div>

@@ -49,6 +49,18 @@ function App() {
     setCartItems((prevState) => prevState.filter((item) => item.id !== +id));
   };
 
+  const handleIncrementItemQuantity = (id) => {
+    setCartItems((prevState) => {
+      const findIndex = cartItems.findIndex((item) => item.id === id);
+      const newCart = [...prevState];
+      newCart[findIndex] = {
+        ...newCart[findIndex],
+        quantity: newCart[findIndex].quantity++,
+      };
+      return newCart;
+    });
+  };
+
   return (
     <>
       <Header>
@@ -62,6 +74,7 @@ function App() {
             cartItems={cartItems}
             total={cartTotalPrice}
             remove={handleRemoveFromCart}
+            increment={handleIncrementItemQuantity}
           />
         )}
       </Header>
