@@ -51,14 +51,51 @@ function App() {
 
   const handleIncrementItemQuantity = (id) => {
     setCartItems((prevState) => {
-      const findIndex = cartItems.findIndex((item) => item.id === id);
+      const itemIndex = cartItems.findIndex((item) => item.id === id);
       const newCart = [...prevState];
-      newCart[findIndex] = {
-        ...newCart[findIndex],
-        quantity: newCart[findIndex].quantity++,
+      newCart[itemIndex] = {
+        ...newCart[itemIndex],
+        quantity: newCart[itemIndex].quantity++,
       };
       return newCart;
     });
+  };
+
+  const handleDecrementCartQuantity = (id) => {
+    const itemIndex = cartItems.findIndex((item) => item.id === id);
+    setCartItems((prevState) => {
+      // if the quantity is 1 remove the item from the cart
+      if (prevState[itemIndex].quantity === 1) {
+        return prevState.filter((item) => item.id !== +id);
+      }
+
+      // Otherwise reduce the quantity by 1
+      const newCart = [...prevState];
+      newCart[itemIndex] = {
+        ...newCart[itemIndex],
+        quantity: newCart[itemIndex].quantity - 1,
+      };
+      return newCart;
+    });
+
+    // TODO: Explain why this doesn't work or why does work and shouldn't
+    // setCartItems((prevState) => {
+    //   const itemIndex = cartItems.findIndex((item) => item.id === id);
+
+    //   const newCart = [...prevState];
+
+    //   if (newCart[itemIndex].quantity === 0) {
+    //     handleRemoveFromCart(id);
+    //   }
+
+    //   newCart[itemIndex] = {
+    //     ...newCart[itemIndex],
+
+    //     quantity: newCart[itemIndex].quantity--,
+    //   };
+
+    //   return newCart;
+    // });
   };
 
   return (
@@ -75,6 +112,7 @@ function App() {
             total={cartTotalPrice}
             remove={handleRemoveFromCart}
             increment={handleIncrementItemQuantity}
+            decrement={handleDecrementCartQuantity}
           />
         )}
       </Header>

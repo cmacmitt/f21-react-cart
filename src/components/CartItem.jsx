@@ -1,10 +1,10 @@
-const CartItem = ({ item, remove, increment }) => {
+const CartItem = ({ item, remove, increment, decrement }) => {
   const { id, name, price, quantity } = item;
   return (
     <li className="cart-item">
       <div className="name">{name}</div>
       <div className="quantity">
-        <button className="fa fa-minus">
+        <button onClick={() => decrement(id)} className="fa fa-minus">
           <i></i>
         </button>
         {quantity}
