@@ -45,6 +45,10 @@ function App() {
     });
   };
 
+  const handleRemoveFromCart = (id) => {
+    setCartItems((prevState) => prevState.filter((item) => item.id !== +id));
+  };
+
   return (
     <>
       <Header>
@@ -53,7 +57,13 @@ function App() {
           total={cartTotalPrice}
           items={cartTotalItems}
         />
-        {cartOpen && <Cart cartItems={cartItems} total={cartTotalPrice} />}
+        {cartOpen && (
+          <Cart
+            cartItems={cartItems}
+            total={cartTotalPrice}
+            remove={handleRemoveFromCart}
+          />
+        )}
       </Header>
       <main>
         <ItemList items={items} addToCart={handleAddToCart} />

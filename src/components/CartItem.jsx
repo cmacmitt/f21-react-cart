@@ -1,4 +1,4 @@
-const CartItem = ({ item }) => {
+const CartItem = ({ item, remove }) => {
   const { id, name, price, quantity } = item;
   return (
     <li className="cart-item">
@@ -13,7 +13,7 @@ const CartItem = ({ item }) => {
         </button>
       </div>
       <div className="price">@ ${price.toFixed(2)}</div>
-      <button className="remove-from-cart">
+      <button onClick={() => remove(id)} className="remove-from-cart">
         <i className="far fa-times-circle"></i>
       </button>
     </li>
