@@ -80,3 +80,24 @@ export const initialItems = [
     stock: 21,
   },
 ];
+
+export const initialCartItems = [
+  {
+    id: 1,
+    name: "Rival 650 Wireless",
+    price: 159.99,
+    quantity: 3,
+  },
+  {
+    id: 2,
+    name: "Rival 600",
+    price: 109.99,
+    quantity: 1,
+  },
+  {
+    id: 3,
+    name: "Rival 3",
+    price: 39.99,
+    quantity: 2,
+  },
+];

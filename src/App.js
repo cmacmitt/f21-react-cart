@@ -6,15 +6,16 @@ import CartSummary from "./components/CartSummary";
 import ItemList from "./components/ItemList";
 
 // temporary items array
-import { initialItems } from "./initialItems";
+import { initialItems, initialCartItems } from "./initialItems";
 function App() {
   const [items, setItems] = useState(initialItems);
+  const [cartItems, setCartItems] = useState(initialCartItems);
 
   return (
     <>
       <Header>
         <CartSummary />
-        <Cart />
+        <Cart cartItems={cartItems} />
       </Header>
       <main>
         <ItemList items={items} />

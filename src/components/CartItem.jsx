@@ -1,17 +1,18 @@
-const CartItem = () => {
+const CartItem = ({ item }) => {
+  const { id, name, price, quantity } = item;
   return (
     <li className="cart-item">
-      <div className="name">Rival 500</div>
+      <div className="name">{name}</div>
       <div className="quantity">
         <button className="fa fa-minus">
           <i></i>
         </button>
-        2
+        {quantity}
         <button className="fa fa-plus">
           <i></i>
         </button>
       </div>
-      <div className="price">@ $109.99</div>
+      <div className="price">@ ${price.toFixed(2)}</div>
       <button className="remove-from-cart">
         <i className="far fa-times-circle"></i>
       </button>
