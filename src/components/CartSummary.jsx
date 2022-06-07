@@ -1,4 +1,4 @@
-const CartSummary = ({ items, total }) => {
+const CartSummary = ({ items, total, toggleCart }) => {
   return (
     <div className="cart-icon">
       <div className="cart-icon-values">
@@ -7,7 +7,7 @@ const CartSummary = ({ items, total }) => {
           {items} item{items === 1 ? "" : "s"}
         </div>
       </div>
-      <i className="fas fa-shopping-cart"></i>
+      <i onClick={toggleCart} className="fas fa-shopping-cart"></i>
     </div>
   );
 };

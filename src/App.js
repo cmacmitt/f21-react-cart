@@ -10,6 +10,7 @@ import { initialItems, initialCartItems } from "./initialItems";
 function App() {
   const [items, setItems] = useState(initialItems);
   const [cartItems, setCartItems] = useState(initialCartItems);
+  const [cartOpen, setCartOpen] = useState(false);
 
   const cartTotalPrice = cartItems.reduce(
     (total, item) => (total += item.price * item.quantity),
@@ -21,11 +22,19 @@ function App() {
     0
   );
 
+  const handleToggleCart = () => {
+    setCartOpen((prevState) => !prevState);
+  };
+
   return (
     <>
       <Header>
-        <CartSummary total={cartTotalPrice} items={cartTotalItems} />
-        <Cart cartItems={cartItems} total={cartTotalPrice} />
+        <CartSummary
+          toggleCart={handleToggleCart}
+          total={cartTotalPrice}
+          items={cartTotalItems}
+        />
+        {cartOpen && <Cart cartItems={cartItems} total={cartTotalPrice} />}
       </Header>
       <main>
         <ItemList items={items} />
