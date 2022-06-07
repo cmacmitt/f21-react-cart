@@ -1,6 +1,6 @@
 import CartItem from "./CartItem";
 
-const Cart = ({ cartItems }) => {
+const Cart = ({ cartItems, total }) => {
   return (
     <aside className="cart">
       <h2>Your Cart</h2>
@@ -9,7 +9,7 @@ const Cart = ({ cartItems }) => {
           <CartItem key={item.id} item={item} />
         ))}
       </ul>
-      <div className="total">Total: $604.93</div>
+      <div className="total">Total: ${total.toFixed(2)}</div>
     </aside>
   );
 };
