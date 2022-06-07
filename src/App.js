@@ -11,11 +11,21 @@ function App() {
   const [items, setItems] = useState(initialItems);
   const [cartItems, setCartItems] = useState(initialCartItems);
 
+  const cartTotalPrice = cartItems.reduce(
+    (total, item) => (total += item.price * item.quantity),
+    0
+  );
+
+  const cartTotalItems = cartItems.reduce(
+    (total, item) => (total += item.quantity),
+    0
+  );
+
   return (
     <>
       <Header>
-        <CartSummary />
-        <Cart cartItems={cartItems} />
+        <CartSummary total={cartTotalPrice} items={cartTotalItems} />
+        <Cart cartItems={cartItems} total={cartTotalPrice} />
       </Header>
       <main>
         <ItemList items={items} />
