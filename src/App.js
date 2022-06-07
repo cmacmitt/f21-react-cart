@@ -32,7 +32,16 @@ function App() {
     // if not, add it to the state
 
     setCartItems((prevState) => {
-      return [...prevState, { ...itemToAdd, quantity: 1 }];
+      const findIndex = cartItems.findIndex((item) => item.id === itemToAdd.id);
+      if (findIndex === -1) {
+        return [...prevState, { ...itemToAdd, quantity: 1 }];
+      }
+      const newCart = [...prevState];
+      newCart[findIndex] = {
+        ...newCart[findIndex],
+        quantity: newCart[findIndex].quantity++,
+      };
+      return newCart;
     });
   };
 
