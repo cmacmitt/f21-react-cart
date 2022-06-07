@@ -1,4 +1,4 @@
-const Item = ({ item }) => {
+const Item = ({ item, addToCart }) => {
   const { id, name, imageURL, description, price } = item;
   return (
     <li className="item">
@@ -6,7 +6,9 @@ const Item = ({ item }) => {
       <h2>{name}</h2>
       <div className="price">${price.toFixed(2)}</div>
       <div className="description">{description}</div>
-      <button>Add to Cart</button>
+      <button onClick={() => addToCart({ id: id, name: name, price: price })}>
+        Add to Cart
+      </button>
     </li>
   );
 };

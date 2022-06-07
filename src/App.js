@@ -26,6 +26,16 @@ function App() {
     setCartOpen((prevState) => !prevState);
   };
 
+  const handleAddToCart = (itemToAdd) => {
+    // check if the item is in the state already
+    // if it exists, update the quantity
+    // if not, add it to the state
+
+    setCartItems((prevState) => {
+      return [...prevState, { ...itemToAdd, quantity: 1 }];
+    });
+  };
+
   return (
     <>
       <Header>
@@ -37,7 +47,7 @@ function App() {
         {cartOpen && <Cart cartItems={cartItems} total={cartTotalPrice} />}
       </Header>
       <main>
-        <ItemList items={items} />
+        <ItemList items={items} addToCart={handleAddToCart} />
       </main>
     </>
   );
