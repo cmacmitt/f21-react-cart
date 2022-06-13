@@ -1,6 +1,6 @@
 import CartItem from "./CartItem";
 
-const Cart = ({ cartItems, total, remove, increment, decrement }) => {
+const Cart = ({ cartItems, total, dispatch }) => {
   return (
     <aside className="cart">
       <h2>Your Cart</h2>
@@ -9,9 +9,10 @@ const Cart = ({ cartItems, total, remove, increment, decrement }) => {
           <CartItem
             key={item.id}
             item={item}
-            remove={remove}
-            increment={increment}
-            decrement={decrement}
+            // remove={remove}
+            // increment={increment}
+            // decrement={decrement}
+            dispatch={dispatch}
           />
         ))}
       </ul>
