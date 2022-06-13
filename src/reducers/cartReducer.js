@@ -1,11 +1,30 @@
-const cartReducer = (state, action) => {
+const cartReducer = (cartState, action) => {
+  const cartItems = [...cartState];
+  const id = action.payload.id || action.payload;
+  const itemIndex = cartItems.findIndex((item) => item.id === id);
+
   switch (action.type) {
     case "add":
+      if (itemIndex < 0) {
+        cartItems.push({ ...action.payload, quantity: 1 });
+        return cartItems;
+      }
+      cartItems[itemIndex] = {
+        ...cartItems[itemIndex],
+        quantity: cartItems[itemIndex].quantity + 1,
+      };
+      return cartItems;
     case "remove":
+      console.log(JSON.stringify(action));
+      return cartState;
     case "increment":
+      console.log(JSON.stringify(action));
+      return cartState;
     case "decrement":
-      console.log(action.payload);
-      return newState;
+      console.log(JSON.stringify(action));
+      return cartState;
+    default:
+      throw new Error(JSON.stringify(action));
   }
 };
 
